@@ -1,79 +1,38 @@
 class EmailsController < ApplicationController
-  before_action :set_email, only: [:show, :edit, :update, :destroy]
-
+  
+ 
   def index
     @emails = Email.all
   end
 
-  def show
-    @email.update(read: true) if !@email.read
-
-    respond_to do |format|
-      format.html{}
-      format.js{}
-    end
-  end
-
-  def new
-    create
-  end
-
-  def edit
-  end
-
   def create
     @email = Email.create(object: Faker::Company.name, body: Faker::Lorem.paragraphs)
-
+    if @email.save
     respond_to do |format|
-      if @email.save
-        format.html { redirect_to @email, notice: 'Email was successfully created.' }
-        format.js {}
-      else
-        format.html { render :new }
-        format.js {}
-      end
+      format.html { redirect_to root_path }
+      format.js { }
     end
-  end
-
-  def update
-    if params[:invertRead] == true
-      @email.update(read: !@email.read)
-      respond_to do |format|
-        format.html{}
-        format.js{}
-      end
     else
-      respond_to do |format|
-        if @email.update(email_params)
-          format.html { redirect_to @email, notice: 'Email was successfully updated.' }
-          format.js {}
-        else
-          format.html { render :edit }
-          format.js {}
-        end
-      end
+    redirect_to root_path
     end
   end
 
-  def destroy
-    @emailId = @email.id;
-    @email.destroy
-    respond_to do |format|
-      format.html { redirect_to emails_url, notice: 'Email was successfully destroyed.' }
-      format.js{}
-    end
-  end
-
-  private
- 
-  def set_email
+  def show
     @email = Email.find(params[:id])
   end
 
- 
-  def email_params
-    params.fetch(:email, {})
+  def destroy
+    @email = Email.find(params[:id])
+    @email.destroy
+    if @email.destroy
+    redirect_to root_path
+    end
   end
+
+
+
+  
+
 end
 
 
