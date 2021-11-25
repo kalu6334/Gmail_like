@@ -1,0 +1,4 @@
+<h1><%= @email.object %></h1>
+<p><%= @email.body %></p>
+<button>Marquer comme non-lu</button>
+<button><%= link_to "Supprimer", email_path(@email), method: :delete, class:"btn btn-danger" %></button>

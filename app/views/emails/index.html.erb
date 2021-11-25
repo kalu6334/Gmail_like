@@ -1,0 +1,26 @@
+<h1>GmailLike</h1>
+
+<p><%= link_to "Recevoir un email", emails_path, method: :post, class: "btn btn-primary", remote: true %></p>
+
+ <div class="container">
+            
+            
+                <% @emails.each do |email| %>
+                <div id="email-list" class="row">
+               
+                <div   class="col-4 bg-warning"><%=link_to email.object, email_path(email.id)   %></div>
+                
+                
+                <div  class="col-6 bg-success"><%= %></div>
+                </div> 
+                <% end %>
+                
+           
+ </div>
+
+
+
+
+
+
+ 
