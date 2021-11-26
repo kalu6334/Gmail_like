@@ -7,11 +7,12 @@
             
                 <% @emails.each do |email| %>
                 <div id="email-list" class="row">
-               
-                <div   class="col-4 bg-warning"><%=link_to email.object, email_path(email.id)   %></div>
+                 
+                <div class="col-4 bg-warning" id="toggl1" > <%=link_to email.object, email_path(email.id)  %></div>
                 
                 
-                <div  class="col-6 bg-success"><%= %></div>
+                <div id="d1" class="col-6 bg-success"> <%=  %></div>
+                
                 </div> 
                 <% end %>
                 
